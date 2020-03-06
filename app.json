@@ -5,7 +5,7 @@
     "wiki",
     "communication"
   ],
-  "repository": "https://github.com/weseek/growi",
+  "repository": "https://github.com/firenzeits/growi",
   "success_url": "/",
   "env": {
     "NODE_ENV": {
