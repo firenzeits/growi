@@ -80,7 +80,7 @@ class Comment extends React.PureComponent {
   }
 
   isCurrentUserEqualsToAuthor() {
-    return this.props.comment.creator.username === this.props.appContainer.currentUsername;
+    return this.props.comment.creator.username === this.props.appContainer.me;
   }
 
   isCurrentRevision() {

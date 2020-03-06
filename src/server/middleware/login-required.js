@@ -42,7 +42,7 @@ module.exports = (crowi, isGuestAllowed = false) => {
       return res.sendStatus(403);
     }
 
-    req.session.redirectTo = req.originalUrl;
+    req.session.jumpTo = req.originalUrl;
     return res.redirect('/login');
   };
 

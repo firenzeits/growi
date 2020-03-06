@@ -11,7 +11,8 @@ import UserPicture from '../User/UserPicture';
 const PersonalDropdown = (props) => {
 
   const { t, appContainer } = props;
-  const user = appContainer.currentUser || {};
+  const username = appContainer.me;
+  const user = appContainer.findUser(username);
 
   const logoutHandler = () => {
     const { interceptorManager } = appContainer;

@@ -16,9 +16,7 @@ module.exports = (crowi) => {
     logger.debug('accessToken is', accessToken);
 
     const user = await User.findUserByApiToken(accessToken);
-    // transforming attributes
-    // see User model
-    req.user = user.toObject();
+    req.user = user;
     req.skipCsrfVerify = true;
 
     logger.debug('Access token parsed: skipCsrfVerify');

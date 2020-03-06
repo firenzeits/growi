@@ -51,11 +51,11 @@ class RemoveAdminButton extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { currentUsername } = this.props.appContainer;
+    const me = this.props.appContainer.me;
 
     return (
       <Fragment>
-        {user.username !== currentUsername ? this.renderRemoveAdminBtn()
+        {user.username !== me ? this.renderRemoveAdminBtn()
           : this.renderRemoveAdminAlert()}
       </Fragment>
     );

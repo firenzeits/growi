@@ -50,11 +50,11 @@ class StatusSuspendedButton extends React.Component {
 
   render() {
     const { user } = this.props;
-    const { currentUsername } = this.props.appContainer;
+    const me = this.props.appContainer.me;
 
     return (
       <Fragment>
-        {user.username !== currentUsername ? this.renderSuspendedBtn()
+        {user.username !== me ? this.renderSuspendedBtn()
           : this.renderSuspendedAlert()}
       </Fragment>
     );

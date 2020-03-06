@@ -214,7 +214,7 @@ class PageQueryBuilder {
     return this;
   }
 
-  addConditionToFilteringByViewer(user, userGroups, showAnyoneKnowsLink = false, showPagesRestrictedByOwner = false, showPagesRestrictedByGroup = false) {
+  addConditionToFilteringByViewer(user, userGroups, showAnyoneKnowsLink, showPagesRestrictedByOwner, showPagesRestrictedByGroup) {
     const grantConditions = [
       { grant: null },
       { grant: GRANT_PUBLIC },
@@ -832,27 +832,6 @@ module.exports = function(crowi) {
   }
 
   /**
-   * Add condition that filter pages by viewer
-   *  by considering Config
-   *
-   * @param {PageQueryBuilder} builder
-   * @param {User} user
-   * @param {boolean} showAnyoneKnowsLink
-   */
-  async function addConditionToFilteringByViewerToEdit(builder, user) {
-    validateCrowi();
-
-    // determine UserGroup condition
-    let userGroups = null;
-    if (user != null) {
-      const UserGroupRelation = crowi.model('UserGroupRelation');
-      userGroups = await UserGroupRelation.findAllUserGroupIdsRelatedToUser(user);
-    }
-
-    return builder.addConditionToFilteringByViewer(user, userGroups, false, false, false);
-  }
-
-  /**
    * export addConditionToFilteringByViewerForList as static method
    */
   pageSchema.statics.addConditionToFilteringByViewerForList = addConditionToFilteringByViewerForList;
@@ -1059,7 +1038,7 @@ module.exports = function(crowi) {
     builder.addConditionToExcludeRedirect();
 
     // add grant conditions
-    await addConditionToFilteringByViewerToEdit(builder, user);
+    await addConditionToFilteringByViewerForList(builder, user);
 
     // get all pages that the specified user can update
     const pages = await builder.query.exec();
